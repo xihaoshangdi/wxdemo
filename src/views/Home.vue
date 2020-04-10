@@ -10,6 +10,7 @@
         <div class="talk-area">
             <div class="talk-nav">
                 <frame-unit/>
+                <span class="talk-title">文件传输助手</span>
             </div>
             用户对话页
             <TheBaseInputArea/>
@@ -66,10 +67,18 @@
         flex-direction: column;
         justify-content: space-between;
         flex-grow: 1;
+        background-color:#F5F5F5;
         .talk-nav{
             height: 60px;
-            border: 1px solid red;
             background-color: #FAFAFA;
+            position: relative;
+            box-shadow: 0 1px 4px rgba(0,21,41,.08);
+            .talk-title{
+                position: absolute;
+                top: 20px;
+                margin-left: 20px;
+                font-size: 15px;
+            }
         }
     }
 

@@ -24,7 +24,6 @@
 
 <style lang="scss" scoped>
     .op-area {
-        border: 1px solid red;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -42,7 +41,6 @@
     .op-icon:hover {
         background-color: rgba(0, 0, 0, 0.1);
     }
-
     .remove:hover {
         background-color: red;
     }
