@@ -1,5 +1,5 @@
 <template>
-    <svg class="icon" :class="classPrefix+'-icon'"  aria-hidden="true">
+    <svg class="icon" aria-hidden="true">
         <use :xlink:href="'#icon-'+name"></use>
     </svg>
 </template>
@@ -8,7 +8,7 @@
 <script lang="js">
     export default {
         name: "Icon",
-        props:['name','classPrefix']
+        props:['name']
     };
 </script>
 

@@ -44,7 +44,7 @@
 
 <style lang="scss" scoped>
     .side{
-        width: 50px;
+        width: 60px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
