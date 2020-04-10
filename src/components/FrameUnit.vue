@@ -1,9 +1,9 @@
 <template>
     <div class="op-area">
-        <div v-for="i in list" :key="i">
-            <Icon class="op-icon" :name="i"/>
-        </div>
-        <Icon class="op-icon remove" name="remove"/>
+        <Icon class="op-icon " @click.native="signTop" name="sign"/>
+        <Icon class="op-icon " @click.native="win.minimize()" name="minus"/>
+        <Icon class="op-icon " @click.native="win.maximize()" name="max"/>
+        <Icon class="op-icon remove" @click.native="win.close()" name="remove"/>
     </div>
 </template>
 
@@ -11,14 +11,23 @@
 <script lang="js">
     import Icon from "@/components/Icon";
 
+    const {remote} = require("electron");
+    const win = remote.getCurrentWindow();
     export default {
         name: "FrameUnit",
         data() {
             return {
-                list: ["sign", "minus", "max"]
+                isTop:false,
+                win:win
             };
         },
-        components: {Icon}
+        components: {Icon},
+        methods: {
+            signTop(){
+                this.isTop=!this.isTop;
+                win.setAlwaysOnTop(this.isTop);
+            }
+        }
     };
 </script>
 
@@ -41,6 +50,7 @@
     .op-icon:hover {
         background-color: rgba(0, 0, 0, 0.1);
     }
+
     .remove:hover {
         background-color: red;
     }
