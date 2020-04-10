@@ -13,7 +13,7 @@
         <div>
             <Icon
                     v-for="item in sideListBottom"
-                    class-prefix="side-bottom"
+                    class="side-bottom-icon"
                     :name="item"
                     :key="item"/>
         </div>
@@ -44,7 +44,7 @@
 
 <style lang="scss" scoped>
     .side{
-        width: 60px;
+        min-width: 60px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -61,6 +61,9 @@
             }
             .side-bottom-icon{
                 margin: 5px 0;
+            }
+            .side-bottom-icon:hover,.side-top-icon:hover{
+                color: whitesmoke;
             }
         }
     }

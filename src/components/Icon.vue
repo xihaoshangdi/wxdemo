@@ -21,9 +21,6 @@
         fill: currentColor;
         color: #858585;
     }
-    .icon:hover{
-        color: whitesmoke;
-    }
     .selected{
         color: green;
     }

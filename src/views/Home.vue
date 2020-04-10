@@ -1,18 +1,14 @@
 <template>
     <Layout>
         <div class="user-area">
-            <div class="nav">
+            <div class="user-nav">
                 <TheBaseInput/>
                 <Icon name="i-add" class="add-btn"/>
             </div>
-
             <BaseUser/>
-          <BaseUser/><BaseUser/><BaseUser/><BaseUser/><BaseUser/>
-
-
         </div>
         <div class="talk-area">
-            <div class="xx">
+            <div class="talk-nav">
                 <frame-unit/>
             </div>
             用户对话页
@@ -49,14 +45,12 @@
         width: 250px;
         background-color: #E7E6E5;
     }
-
-    .nav {
+    .user-nav {
         height: 60px;
         display: flex;
         justify-content: space-around;
         align-items: center;
         background-color: #DBD9D8;
-
         .add-btn {
             width: 1em;
             height: 1em;
@@ -67,12 +61,16 @@
         }
     }
 
-
     .talk-area {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         flex-grow: 1;
+        .talk-nav{
+            height: 60px;
+            border: 1px solid red;
+            background-color: #FAFAFA;
+        }
     }
 
 </style>
