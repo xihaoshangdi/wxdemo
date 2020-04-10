@@ -12,7 +12,9 @@
                 <frame-unit/>
                 <span class="talk-title">文件传输助手</span>
             </div>
-            用户对话页
+            <div class="talk-content">
+                <TheBaseInfo/>
+            </div>
             <TheBaseInputArea/>
         </div>
     </Layout>
@@ -26,10 +28,12 @@
     import TheBaseInput from "@/components/TheBaseInput";
     import Icon from "@/components/Icon";
     import BaseUser from "@/components/BaseUserCard";
+    import TheBaseInfo from "@/components/TheBaseInfo";
 
     export default {
         name: "Home",
         components: {
+            TheBaseInfo,
             BaseUser,
             Icon,
             TheBaseInput,
@@ -43,15 +47,17 @@
 
 <style lang="scss" scoped>
     .user-area {
-        width: 250px;
+        min-width: 250px;
         background-color: #E7E6E5;
     }
+
     .user-nav {
         height: 60px;
         display: flex;
         justify-content: space-around;
         align-items: center;
         background-color: #DBD9D8;
+
         .add-btn {
             width: 1em;
             height: 1em;
@@ -67,18 +73,23 @@
         flex-direction: column;
         justify-content: space-between;
         flex-grow: 1;
-        background-color:#F5F5F5;
-        .talk-nav{
+        background-color: #F5F5F5;
+
+        .talk-nav {
             height: 60px;
             background-color: #FAFAFA;
             position: relative;
-            box-shadow: 0 1px 4px rgba(0,21,41,.08);
-            .talk-title{
+            box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+
+            .talk-title {
                 position: absolute;
                 top: 20px;
                 margin-left: 20px;
                 font-size: 15px;
             }
+        }
+        .talk-content{
+            flex-grow: 1;
         }
     }
 
