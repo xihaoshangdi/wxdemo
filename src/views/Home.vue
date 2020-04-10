@@ -41,7 +41,6 @@
             TheBaseInputArea,
             Layout
         },
-        methods: {}
     };
 </script>
 

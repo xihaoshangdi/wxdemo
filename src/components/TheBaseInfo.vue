@@ -15,9 +15,8 @@
 
 <style lang="scss" scoped>
     .info-box{
-        border: 1px solid red;
         display: flex;
-        margin: 3px 0;
+        margin: 10px 0;
         padding-left: 100px;
         padding-right: 10px;
         justify-content: flex-end;
