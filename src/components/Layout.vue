@@ -1,8 +1,6 @@
 <template>
     <div class="box">
-        <div class="side">
-                icon-list
-        </div>
+        <Side/>
         <div class="main">
             <slot></slot>
         </div>
@@ -12,8 +10,10 @@
 
 
 <script lang="js">
+    import Side from "@/components/Side";
     export default {
-        name: "Layout"
+        name: "Layout",
+        components: {Side},
     };
 </script>
 
@@ -23,15 +23,8 @@
         flex-direction: row;
         height: 100vh;
         width: 100vw;
-        border: 1px solid green;
+    }
 
-    }
-    .side{
-        display: flex;
-        flex-direction: column;
-        width: 50px;
-        border: 1px solid red;
-    }
     .main{
         display: flex;
         flex-direction: row;

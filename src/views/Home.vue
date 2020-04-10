@@ -3,12 +3,14 @@
     <div class="user-area">
       <div class="nav">search</div>
       <div class="user">
-        <div class="img"></div>
+        <div class="img" @click="xx"></div>
         <span>xxxxxxx</span>
       </div>
     </div>
     <div class="talk-area">
-      <div class="nav"></div>
+      <div class="nav">
+        <frame-unit/>
+      </div>
       用户对话页
       <TheBaseInputArea/>
     </div>
@@ -19,12 +21,19 @@
 // @ is an alias to /src
 import Layout from "../components/Layout";
 import TheBaseInputArea from "@/components/TheBaseInputArea";
+import FrameUnit from "@/components/FrameUnit";
 
 export default {
   name: 'Home',
   components: {
+    FrameUnit,
     TheBaseInputArea,
     Layout,
+  },
+  methods:{
+    xx(){
+      window.minimize();
+    }
   }
 }
 </script>
