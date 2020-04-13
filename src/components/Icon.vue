@@ -21,7 +21,4 @@
         fill: currentColor;
         color: #858585;
     }
-    .selected{
-        color: green;
-    }
 </style>
