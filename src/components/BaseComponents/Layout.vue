@@ -1,6 +1,6 @@
 <template>
-    <div class="box">
-        <Side/>
+    <div class="box" @mousedown="start" @mouseup="stop" >
+        <Side />
         <div class="main">
             <slot></slot>
         </div>
@@ -11,9 +11,19 @@
 
 <script lang="js">
     import Side from "@/components/BaseComponents/Side";
+    const {ipcRenderer} = require("electron");
     export default {
         name: "Layout",
         components: {Side},
+        methods: {
+            start() {
+                ipcRenderer.send("window-move-start", true);
+            },
+            stop(){
+                console.log('xxx');
+                ipcRenderer.send("window-move-start", false);
+            }
+        }
     };
 </script>
 

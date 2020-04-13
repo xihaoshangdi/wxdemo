@@ -1,13 +1,14 @@
 "use strict";
 
 import {app, protocol, BrowserWindow, Menu} from "electron";
+
+
 import {
     createProtocol
     /* installVueDevtools */
 } from "vue-cli-plugin-electron-builder/lib";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
-
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
@@ -20,16 +21,55 @@ function createWindow() {
     win = new BrowserWindow({
         width: 1050,
         height: 560,
-        minWidth:700,
-        minHeight:500,
-        movable:true,
+        minWidth: 700,
+        minHeight: 500,
+        movable: true,
         frame: false,
+        zoomFactor: 1,
         webPreferences: {
             nodeIntegration: true
         }
     });
     //隐藏菜单栏
     createMenu();
+    //设置监听函数
+    const {screen, ipcMain} = require("electron");
+
+    function windowMove(win) {
+        let winStartPosition = undefined;
+        let mouseStartPosition = undefined;
+        let movingInterval = null;
+        let windowSize = undefined;
+        ipcMain.on("window-move-start", (event, status) => {
+                if (status) {
+                    //获取当前窗口位置并存储(取得左上角)
+                    const winPosition = win.getPosition();
+                    winStartPosition = {x: winPosition[0], y: winPosition[1]};
+                    windowSize = win.getSize();
+                    //获取当前鼠标绝对位置
+                    mouseStartPosition = screen.getCursorScreenPoint();
+                    if (movingInterval) {
+                        clearInterval(movingInterval);
+                    }
+                    movingInterval = setInterval(() => {
+                        // 实时更新位置
+                        const cursorPosition = screen.getCursorScreenPoint();
+                        const x = winStartPosition.x + cursorPosition.x - mouseStartPosition.x;
+                        const y = winStartPosition.y + cursorPosition.y - mouseStartPosition.y;
+                        win.setPosition(x, y);
+                        win.setSize(windowSize[0], windowSize[1]);
+                    }, 10);
+                } else {
+                    clearInterval(movingInterval);
+                    movingInterval = null;
+                }
+            }
+        )
+        ;
+    }
+
+    windowMove(win);
+    //
     if (process.env.WEBPACK_DEV_SERVER_URL) {
         // Load the url of the dev server if in development mode
         win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
@@ -103,3 +143,7 @@ function createMenu() {
     Menu.setApplicationMenu(null);
 
 }
+
+//
+
+
