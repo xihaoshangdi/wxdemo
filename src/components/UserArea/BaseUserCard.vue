@@ -7,15 +7,15 @@
         </div>
         <div class="card-after">
             <span>昨天</span>
-            <Icon name="zhong" class="card-icon"/>
+            <Icon name="bell" class="card-icon"/>
         </div>
     </div>
 </template>
 
 
 <script lang="js">
-    import BaseUserImg from "@/components/BaseUserImg";
-    import Icon from "@/components/Icon";
+    import BaseUserImg from "@/components/BaseComponents/BaseUserImg";
+    import Icon from "@/components/BaseComponents/Icon";
     export default {
         name: "BaseUser",
         components: {Icon, BaseUserImg}
@@ -71,6 +71,8 @@
         color: #999999;
     }
     .card-icon{
+        width: 1em;
+        height: 1em;
         margin-top: 5px;
     }
 

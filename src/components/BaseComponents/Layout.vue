@@ -10,7 +10,7 @@
 
 
 <script lang="js">
-    import Side from "@/components/Side";
+    import Side from "@/components/BaseComponents/Side";
     export default {
         name: "Layout",
         components: {Side},

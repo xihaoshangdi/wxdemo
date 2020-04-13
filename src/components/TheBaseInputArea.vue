@@ -13,7 +13,7 @@
 </template>
 
 <script lang="js">
-    import Icon from "@/components/Icon";
+    import Icon from "@/components/BaseComponents/Icon";
 
     export default {
         name: "TheBaseInputArea",

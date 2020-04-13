@@ -6,7 +6,7 @@
 
 
 <script lang="js">
-    import BaseUserImg from "@/components/BaseUserImg";
+    import BaseUserImg from "@/components/BaseComponents/BaseUserImg";
     export default {
         name: "TheBaseInfo",
         components: {BaseUserImg}

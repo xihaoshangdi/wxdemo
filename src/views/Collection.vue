@@ -6,7 +6,7 @@
 
 
 <script lang="js">
-    import Layout from "@/components/Layout";
+    import Layout from "@/components/BaseComponents/Layout";
     export default {
         name: "Collection",
         components: {Layout}

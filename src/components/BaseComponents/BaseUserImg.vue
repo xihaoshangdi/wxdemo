@@ -1,5 +1,5 @@
 <template>
-    <img src="../../public/user.png" alt="user">
+    <img src="../../../public/user.png" alt="user">
 </template>
 
 

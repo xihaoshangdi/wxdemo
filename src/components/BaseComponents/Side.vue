@@ -1,12 +1,13 @@
 <template>
     <div class="side">
         <div>
-            <BaseUserImg/>
+            <BaseUserImg class="user-img"/>
             <router-link
                     v-for="(item,index) in topList"
                     :key="item"
                     :to="hashPath[item]"
                     active-class="selected"
+
             >
                 <Icon
                         @click.native="updateSelect(index)"
@@ -27,8 +28,8 @@
 
 
 <script lang="js">
-    import BaseUserImg from "@/components/BaseUserImg";
-    import Icon from "@/components/Icon";
+    import BaseUserImg from "@/components/BaseComponents/BaseUserImg";
+    import Icon from "@/components/BaseComponents/Icon";
 
     export default {
         name: "Side",
@@ -49,6 +50,7 @@
         },
         methods: {
             updateSelect(index) {
+                console.log(index);
                 this.$store.commit("updateSelect", index);
             }
         }
@@ -71,8 +73,15 @@
             justify-content: center;
             align-items: center;
 
+            .user-img{
+                width: 35px;
+                height: 35px;
+                margin-bottom: 15px;
+            }
+
             .top-icon {
-                margin: 15px 0;
+                box-sizing: content-box;
+                padding: 12px 0;
             }
 
             .side-bottom-icon {
@@ -84,7 +93,6 @@
             }
         }
     }
-
     .selected.router-link-exact-active> .icon {
         color: green;
     }
