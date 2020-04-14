@@ -62,7 +62,6 @@
         flex-direction: column;
         justify-content: space-between;
         background-color: #2A2D31;
-
         & > div {
             padding-top: 20px;
             padding-bottom: 15px;
@@ -70,19 +69,21 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
             .user-img{
                 width: 35px;
                 height: 35px;
                 margin-bottom: 15px;
+                -webkit-app-region: no-drag;
             }
             .top-icon {
                 box-sizing: content-box;
                 padding: 12px 0;
+                -webkit-app-region: no-drag;
             }
             .bottom-icon {
                 box-sizing: content-box;
                 padding: 5px 0;
+                -webkit-app-region: no-drag;
             }
             .bottom-icon:hover,.hover:hover {
                 color: whitesmoke;

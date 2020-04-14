@@ -55,6 +55,7 @@
         justify-content: flex-end;
         align-items: center;
         z-index: 1;
+        -webkit-app-region: no-drag;
     }
 
     .op-icon{

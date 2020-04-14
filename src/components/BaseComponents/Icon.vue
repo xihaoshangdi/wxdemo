@@ -20,5 +20,6 @@
         overflow: hidden;
         fill: currentColor;
         color: #858585;
+        cursor: pointer;
     }
 </style>

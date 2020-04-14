@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <FrameUnit/>
-        <Side />
+        <Side/>
         <div class="main">
             <slot></slot>
         </div>
@@ -25,6 +25,7 @@
         flex-direction: row;
         height: 100vh;
         width: 100vw;
+        -webkit-app-region: drag;
     }
     .main{
         display: flex;
