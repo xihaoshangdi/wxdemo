@@ -1,6 +1,6 @@
 <template>
     <div class="info-box">
-        <span>你吃饭了吗？</span><BaseUserImg/>
+        <span>{{info}}</span><BaseUserImg/>
     </div>
 </template>
 
@@ -9,7 +9,8 @@
     import BaseUserImg from "@/components/BaseComponents/BaseUserImg";
     export default {
         name: "TheBaseInfo",
-        components: {BaseUserImg}
+        components: {BaseUserImg},
+        props:['info']
     };
 </script>
 

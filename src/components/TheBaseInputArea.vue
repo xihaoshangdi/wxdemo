@@ -6,9 +6,9 @@
             </span>
         </div>
         <label @focusin="isFocus=true" @focusout="isFocus=false">
-            <textarea></textarea>
+            <textarea v-model="msg"></textarea>
         </label>
-        <button class="btn">发送</button>
+        <button class="btn" @click="onsubmit">发送</button>
     </div>
 </template>
 
@@ -19,11 +19,18 @@
         name: "TheBaseInputArea",
         data() {
             return {
-                list: ["face", "filepackage", "cut", "weixin"],
-                isFocus: false
+                list: ["face", "fielder", "cut", "chat"],
+                isFocus: false,
+                msg:undefined
             };
         },
-        components: {Icon}
+        components: {Icon},
+        methods:{
+            onsubmit(){
+                this.$store.commit('sendMsg',this.msg);
+                this.msg=undefined;
+            }
+        }
     };
 </script>
 
@@ -48,6 +55,8 @@
         word-break: break-all;
         background-color: transparent;
         resize: none;
+        padding-left: 20px;
+        font-size: 20px;
     }
 
     .icon-group {

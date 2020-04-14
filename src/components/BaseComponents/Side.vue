@@ -6,8 +6,6 @@
                     v-for="(item,index) in topList"
                     :key="item"
                     :to="hashPath[item]"
-                    active-class="selected"
-
             >
                 <Icon
                         @click.native="updateSelect(index)"
@@ -19,7 +17,7 @@
         <div>
             <Icon
                     v-for="item in bottomList"
-                    class="side-bottom-icon"
+                    class="bottom-icon"
                     :name="item"
                     :key="item"/>
         </div>
@@ -78,22 +76,21 @@
                 height: 35px;
                 margin-bottom: 15px;
             }
-
             .top-icon {
                 box-sizing: content-box;
                 padding: 12px 0;
             }
-
-            .side-bottom-icon {
-                margin: 5px 0;
+            .bottom-icon {
+                box-sizing: content-box;
+                padding: 5px 0;
             }
-
-            .hover:hover {
+            .bottom-icon:hover,.hover:hover {
                 color: whitesmoke;
             }
         }
     }
-    .selected.router-link-exact-active> .icon {
+
+    .router-link-exact-active .icon{
         color: green;
     }
 

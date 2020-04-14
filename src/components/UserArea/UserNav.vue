@@ -15,7 +15,6 @@
     </div>
 </template>
 
-
 <script lang="js">
     import Icon from "@/components/BaseComponents/Icon";
     export default {
@@ -43,11 +42,9 @@
         justify-content: space-around;
         align-items: center;
         background-color: #EEEAE8;
-
         .input-box {
             background-color: #DBD9D8;
             border-radius: 3px;
-
             &.focused {
                 background-color: white;
             }

@@ -2,8 +2,8 @@
     <div class="card-area">
         <BaseUserImg class="img"/>
         <div class="card-info">
-            <div class="title">这是一个长的群名描述</div>
-            <div class="describe">这是最新的一条信息描述</div>
+            <div class="title">{{title}}</div>
+            <div class="describe">{{describe}}</div>
         </div>
         <div class="card-after">
             <span>昨天</span>
@@ -18,7 +18,8 @@
     import Icon from "@/components/BaseComponents/Icon";
     export default {
         name: "BaseUser",
-        components: {Icon, BaseUserImg}
+        components: {Icon, BaseUserImg},
+        props:['title','describe']
     };
 </script>
 

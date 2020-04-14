@@ -1,5 +1,6 @@
 <template>
-    <div class="box" @mousedown="start" @mouseup="stop" >
+    <div class="box">
+        <FrameUnit/>
         <Side />
         <div class="main">
             <slot></slot>
@@ -11,20 +12,11 @@
 
 <script lang="js">
     import Side from "@/components/BaseComponents/Side";
-    const {ipcRenderer} = require("electron");
+    import FrameUnit from "@/components/FrameUnit";
     export default {
         name: "Layout",
-        components: {Side},
-        methods: {
-            start() {
-                ipcRenderer.send("window-move-start", true);
-            },
-            stop(){
-                console.log('xxx');
-                ipcRenderer.send("window-move-start", false);
-            }
-        }
-    };
+        components: {FrameUnit, Side},
+    }
 </script>
 
 <style lang="scss" scoped>
@@ -34,7 +26,6 @@
         height: 100vh;
         width: 100vw;
     }
-
     .main{
         display: flex;
         flex-direction: row;
