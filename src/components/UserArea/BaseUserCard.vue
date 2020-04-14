@@ -1,5 +1,5 @@
 <template>
-    <div class="card-area">
+    <div class="card-area" >
         <BaseUserImg class="img"/>
         <div class="card-info">
             <div class="title">{{title}}</div>
@@ -19,7 +19,8 @@
     export default {
         name: "BaseUser",
         components: {Icon, BaseUserImg},
-        props:['title','describe']
+        props:['title','describe'],
+
     };
 </script>
 
@@ -38,6 +39,7 @@
         position: relative;
         box-sizing: content-box;
         padding: 3px 0;
+        -webkit-app-region: no-drag;
     }
     .card-area:hover{
         background-color: rgba(0,0,0,0.1);

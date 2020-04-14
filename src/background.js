@@ -1,8 +1,6 @@
 "use strict";
 
-import {app, protocol, BrowserWindow, Menu} from "electron";
-
-
+import {app, protocol, BrowserWindow, ipcMain} from "electron";
 import {
     createProtocol
     /* installVueDevtools */
@@ -30,45 +28,25 @@ function createWindow() {
             nodeIntegration: true
         }
     });
-    //隐藏菜单栏
-    createMenu();
-    //设置监听函数
-    const {screen, ipcMain} = require("electron");
-
-    function windowMove(win) {
-        let winStartPosition = undefined;
-        let mouseStartPosition = undefined;
-        let movingInterval = null;
-        let windowSize = undefined;
-        ipcMain.on("window-move-start", (event, status) => {
-                if (status) {
-                    //获取当前窗口位置并存储(取得左上角)
-                    const winPosition = win.getPosition();
-                    winStartPosition = {x: winPosition[0], y: winPosition[1]};
-                    windowSize = win.getSize();
-                    //获取当前鼠标绝对位置
-                    mouseStartPosition = screen.getCursorScreenPoint();
-                    if (movingInterval) {
-                        clearInterval(movingInterval);
-                    }
-                    movingInterval = setInterval(() => {
-                        // 实时更新位置
-                        const cursorPosition = screen.getCursorScreenPoint();
-                        const x = winStartPosition.x + cursorPosition.x - mouseStartPosition.x;
-                        const y = winStartPosition.y + cursorPosition.y - mouseStartPosition.y;
-                        win.setPosition(x, y);
-                        win.setSize(windowSize[0], windowSize[1]);
-                    }, 10);
-                } else {
-                    clearInterval(movingInterval);
-                    movingInterval = null;
-                }
+    //监听点击
+    ipcMain.on("create-window", (event) => {
+        event.returnValue = true;
+        // const modalPath = process.env.NODE_ENV === "development"
+        //     ? "http://localhost:8080/#/about"
+        //     : `file://${__dirname}/index.html#about`;
+        let about = new BrowserWindow({
+            width: 800,
+            height: 620,
+            parent: win,
+            frame:false,
+            webPreferences: {
+                webSecurity: false,
+                nodeIntegration:true
             }
-        )
-        ;
-    }
-
-    windowMove(win);
+        });
+        if (!process.env.IS_TEST) about.webContents.openDevTools();
+        about.loadURL(process.env.WEBPACK_DEV_SERVER_URL + "#/about");
+    });
     //
     if (process.env.WEBPACK_DEV_SERVER_URL) {
         // Load the url of the dev server if in development mode
@@ -137,13 +115,5 @@ if (isDevelopment) {
         });
     }
 }
-
-function createMenu() {
-    // windows及linux系统
-    Menu.setApplicationMenu(null);
-
-}
-
-//
 
 

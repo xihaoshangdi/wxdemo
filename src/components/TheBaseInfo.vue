@@ -1,5 +1,5 @@
 <template>
-    <div class="info-box">
+    <div class="info">
         <span>{{info}}</span><BaseUserImg/>
     </div>
 </template>
@@ -15,7 +15,7 @@
 </script>
 
 <style lang="scss" scoped>
-    .info-box{
+    .info{
         display: flex;
         margin: 10px 0;
         padding-left: 100px;

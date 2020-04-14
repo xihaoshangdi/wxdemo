@@ -45,6 +45,7 @@
         .input-box {
             background-color: #DBD9D8;
             border-radius: 3px;
+            -webkit-app-region: no-drag;
             &.focused {
                 background-color: white;
             }

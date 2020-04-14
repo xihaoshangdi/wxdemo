@@ -9,7 +9,7 @@ export default new Vuex.Store({
         userInfo: {
             title: undefined,
             describe: undefined,
-            msgList: undefined,
+            msgList: undefined
         },
         userList: [
             {
@@ -41,9 +41,19 @@ export default new Vuex.Store({
             state.userInfo.msgList.push(msg);
         },
         update(state, index) {
-            const info=state.userList[index];
-            Vue.set(state.userInfo,'title',info.title);
-            Vue.set(state.userInfo,'msgList',info.msgList);
+            let info;
+            if (index !== -1) {
+                info = state.userList[index];
+            } else {
+                info = {
+                    title: undefined,
+                    describe: undefined,
+                    msgList: undefined
+                };
+            }
+            Vue.set(state.userInfo, "title", info.title);
+            Vue.set(state.userInfo, "describe", info.describe);
+            Vue.set(state.userInfo, "msgList", info.msgList);
         }
     },
     actions: {},

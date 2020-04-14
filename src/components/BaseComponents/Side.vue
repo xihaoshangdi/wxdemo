@@ -38,7 +38,7 @@
                     "chat": "/",
                     "mail": "/address",
                     "square": "/collection",
-                    "fielder": "/fielder",
+                    "fielder": "/about",
                     "see": "/see"
                 },
                 topList: ["chat", "mail", "square", "fielder", "see"],

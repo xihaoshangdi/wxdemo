@@ -3,24 +3,28 @@
         <div class="user-area">
             <UserNav/>
             <BaseUser
-                    v-for="(item,index) in UserList"
+                    v-for="(item,index) in userList"
                     :key="index"
                     :title="item.title"
                     :describe="item.describe"
                     @click.native="update(index)"
+                    @dblclick.native="creatPage"
+
             />
         </div>
-        <div class="talk-bg" v-if="!UserInfo.title">
+        <div class="talk-bg" v-if="!userInfo.title">
             <Icon name="bg"/>
         </div>
-        <div class="talk-area" v-if="UserInfo.title">
+        <div class="talk-area" v-if="userInfo.title">
             <div class="talk-nav">
-                <span class="talk-title">{{UserInfo.title}}</span>
+                <span class="talk-title">{{userInfo.title}}</span>
             </div>
             <div class="talk-content">
-                <TheBaseInfo v-for="value in UserInfo.msgList" :key="value" :info="value"/>
+                <div class="info">
+                    <TheBaseInfo v-for="value in userInfo.msgList" :key="value" :info="value"/>
+                </div>
+                <TheBaseInputArea/>
             </div>
-            <TheBaseInputArea/>
         </div>
     </Layout>
 </template>
@@ -34,6 +38,7 @@
     import BaseUser from "@/components/UserArea/BaseUserCard";
     import Icon from "@/components/BaseComponents/Icon";
 
+    const {ipcRenderer} = require("electron");
     export default {
         name: "Home",
         components: {
@@ -46,16 +51,23 @@
         },
         data() {
             return {
-                UserList: this.$store.getters.renderUserList,
-                UserInfo: this.$store.getters.renderUserInfo
+                userList: this.$store.getters.renderUserList,
+                userInfo: this.$store.getters.renderUserInfo
             };
         },
         methods: {
             update(index) {
+                console.log(this.$store.state);
                 this.$store.commit("update", index);
+            },
+            creatPage() {
+                const result=ipcRenderer.sendSync('create-window', this.userInfo);
+                console.log(result);
+                if (result){
+                    this.$store.commit("update", -1);
+                }
             }
         }
-
     };
 </script>
 
@@ -64,11 +76,13 @@
         min-width: 250px;
         background-color: #E7E6E5;
     }
+
     .talk-bg {
         flex-grow: 1;
         position: relative;
         margin-top: 20px;
-        > svg{
+
+        > svg {
             position: absolute;
             left: 50%;
             top: 50%;
@@ -78,6 +92,7 @@
             height: 7em;
         }
     }
+
     .talk-area {
         display: flex;
         flex-direction: column;
@@ -91,6 +106,7 @@
             background-color: #FAFAFA;
             position: relative;
             box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
+
             .talk-title {
                 position: absolute;
                 top: 20px;
@@ -98,8 +114,16 @@
                 font-size: 15px;
             }
         }
+
         .talk-content {
             flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            -webkit-app-region: no-drag;
+
+            > .info {
+                flex-grow: 1;
+            }
         }
     }
 
