@@ -1,46 +1,40 @@
 <template>
-    <div>
-        <FrameUnit/>
-        {{userInfo}}
-<!--        <div class="talk-area">-->
-<!--            <div class="talk-nav">-->
-<!--                <span class="talk-title">{{userInfo.title}}</span>-->
-<!--            </div>-->
-<!--            <div class="talk-content">-->
-<!--                <div class="info">-->
-<!--                    <TheBaseInfo v-for="value in userInfo.msgList" :key="value" :info="value"/>-->
-<!--                </div>-->
-<!--                <TheBaseInputArea/>-->
-<!--            </div>-->
-<!--        </div>-->
+    <div class="talk-area">
+        <div class="talk-nav">
+            <span class="talk-title">{{userInfo.title}}</span>
+        </div>
+        <div class="talk-content">
+            <div class="info">
+                <TheBaseInfo v-for="value in userInfo.msgList" :key="value" :info="value"/>
+            </div>
+            <TheBaseInputArea/>
+        </div>
     </div>
 </template>
 <script>
-
+    import TheBaseInputArea from "@/components/TheBaseInputArea";
+    import TheBaseInfo from "@/components/TheBaseInfo";
 
     export default {
-        // components: {TheBaseInfo, TheBaseInputArea, FrameUnit},
+        components: {TheBaseInfo, TheBaseInputArea},
         data() {
             return {
-                userInfo: undefined,
+                userList: this.$store.getters.renderUserList,
+                userInfo: this.$store.getters.renderUserInfo
             };
         },
-        mounted(){
-            console.log(this.$store.state);
-
-        }
+        methods: {}
     };
 </script>
 <style lang="scss" scoped>
 
     .talk-area {
-        width: 100vw;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         background-color: #F5F5F5;
         position: relative;
+        flex-grow: 1;
 
         .talk-nav {
             height: 60px;

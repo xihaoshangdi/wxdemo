@@ -12,7 +12,12 @@ const routes = [
     {
         path: "/",
         name: "Home",
-        component: Home
+        component: Home,
+        children: [
+            {
+                path: 'about',
+                component: About
+            }]
     },
     {
         path: "/address",
@@ -23,11 +28,6 @@ const routes = [
         path: "/collection",
         name: "Collection",
         component: Collection
-    },
-    {
-        path: "/about",
-        name: "About",
-        component: About
     }
 ];
 
