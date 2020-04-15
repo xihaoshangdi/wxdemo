@@ -35,7 +35,7 @@
         data() {
             return {
                 hashPath: {
-                    "chat": "/",
+                    "chat": "/home",
                     "mail": "/address",
                     "square": "/collection",
                     "fielder": "/about",
@@ -91,7 +91,7 @@
         }
     }
 
-    .router-link-exact-active .icon{
+    .router-link-active .icon{
         color: green;
     }
 

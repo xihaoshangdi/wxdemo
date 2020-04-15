@@ -1,11 +1,12 @@
 <template>
     <div class="talk-area">
+        <FrameUnit/>
         <div class="talk-nav">
             <span class="talk-title">{{userInfo.title}}</span>
         </div>
         <div class="talk-content">
             <div class="info">
-                <TheBaseInfo v-for="value in userInfo.msgList" :key="value" :info="value"/>
+                <TheBaseInfo v-for="(value,index) in userInfo.msgList" :key="index" :info="value"/>
             </div>
             <TheBaseInputArea/>
         </div>
@@ -14,16 +15,25 @@
 <script>
     import TheBaseInputArea from "@/components/TheBaseInputArea";
     import TheBaseInfo from "@/components/TheBaseInfo";
-
+    import FrameUnit from "@/components/FrameUnit";
+    const {remote} = require("electron");
     export default {
-        components: {TheBaseInfo, TheBaseInputArea},
+        components: {FrameUnit, TheBaseInfo, TheBaseInputArea},
         data() {
             return {
                 userList: this.$store.getters.renderUserList,
                 userInfo: this.$store.getters.renderUserInfo
             };
         },
-        methods: {}
+        beforeCreate() {
+            if (!this.$store.state.userInfo.title) {
+                this.$store.commit("loadInfo");
+                const about = remote.getCurrentWindow();
+                about.on("closed", () => {
+                    this.$store.commit('saveInfo');
+                });
+            }
+        }
     };
 </script>
 <style lang="scss" scoped>
@@ -35,6 +45,8 @@
         background-color: #F5F5F5;
         position: relative;
         flex-grow: 1;
+        height: 100vh;
+        -webkit-app-region: drag;
 
         .talk-nav {
             height: 60px;

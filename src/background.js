@@ -37,15 +37,21 @@ function createWindow() {
         let about = new BrowserWindow({
             width: 800,
             height: 620,
-            parent: win,
-            frame:false,
+            frame: false,
             webPreferences: {
                 webSecurity: false,
-                nodeIntegration:true
+                nodeIntegration: true
             }
         });
         if (!process.env.IS_TEST) about.webContents.openDevTools();
         about.loadURL(process.env.WEBPACK_DEV_SERVER_URL + "#/about");
+        about.on("closed", () => {
+            about = null;
+            setTimeout(()=>{
+                win.webContents.send("insertInfo", 'xx');
+            },200);
+
+        });
     });
     //
     if (process.env.WEBPACK_DEV_SERVER_URL) {
