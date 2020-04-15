@@ -26,7 +26,6 @@
     import UserNav from "@/components/UserArea/UserNav";
     import BaseUser from "@/components/UserArea/BaseUserCard";
     import Icon from "@/components/BaseComponents/Icon";
-
     const {ipcRenderer} = require("electron");
     export default {
         name: "Home",

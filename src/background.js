@@ -35,15 +35,17 @@ function createWindow() {
         //     ? "http://localhost:8080/#/about"
         //     : `file://${__dirname}/index.html#about`;
         let about = new BrowserWindow({
-            width: 800,
-            height: 620,
+            width: 400,
+            height: 510,
+            minWidth: 390,
+            minHeight: 500,
             frame: false,
             webPreferences: {
                 webSecurity: false,
                 nodeIntegration: true
             }
         });
-        if (!process.env.IS_TEST) about.webContents.openDevTools();
+        // if (!process.env.IS_TEST) about.webContents.openDevTools();
         about.loadURL(process.env.WEBPACK_DEV_SERVER_URL + "#/about");
         about.on("closed", () => {
             about = null;
